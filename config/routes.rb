@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   # root "posts#index"
   get  '/payment',to: 'payment#payment'
   post  '/purchase',to: 'payment#purchase'
-  post  '/purchase-result',to: 'payment#purchase_step_two'
+  post  '/purchase-step-two',to: 'payment#purchase_step_two'
+  get  '/purchase-result',to: 'payment#purchase_result'
   get  '/acs-service',to: 'payment#acs_service'
   #some routes to let user enter order_id to cancel and cancelling the order
   get '/cancel', to: 'payment#cancel'

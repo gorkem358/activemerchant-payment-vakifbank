@@ -115,8 +115,8 @@ module ActiveMerchant
           "PurchaseAmount" => money,
           "Currency" => currency,
           "BrandName" => CARD_IDENTIFIERS[credit_card.brand],
-          "SuccessUrl" => "http://localhost:3000/purchase-result",
-          "FailureUrl" => "http://localhost:3000/purchase-result",
+          "SuccessUrl" => "http://localhost:3000/purchase-step-two",
+          "FailureUrl" => "http://localhost:3000/purchase-step-two",
           #
           "SessionInfo" => credit_card.verification_value
         }

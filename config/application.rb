@@ -27,7 +27,5 @@ module ActivemerchantDevelopment
 
     #Kendi oluşturduğumuz ve Gateway'den türettiğimiz sınıfı proje yüklenirken dahil ediyoruz
     Dir[Rails.root.join('lib', 'custom_gateways', '*.rb')].each { |file| require file }
-
-    puts "MerchantID => #{ENV["VAKIFBANK_MERCHANT_ID"]}"
   end
 end

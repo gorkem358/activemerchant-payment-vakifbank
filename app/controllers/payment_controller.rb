@@ -40,11 +40,10 @@ class PaymentController < ApplicationController
         if @response.params['acs_url'].present?
           redirect_to acs_service_path(response: @response.params)
         else
-          render 'purchase_result', locals: {response: @response}
+          puts @response.params
+          redirect_to purchase_result_path(response: @response.params)
         end
       else
-        puts "merchant_id = #{ENV['VAKIFBANK_MERCHANT_ID']}"
-        puts @response.params
         raise StandardError, response.message
       end
     end
@@ -73,14 +72,16 @@ class PaymentController < ApplicationController
 
     @response = gateway.complete_3d_purchase(params[:PurchAmount],credit_card,params[:PurchCurrency],{eci: params[:Eci], cavv: params[:Cavv], mpi_transaction_id: params[:VerifyEnrollmentRequestId], user_ip: request.remote_ip })
     if @response.success?
-      render :purchase_result
+      redirect_to purchase_result_path(response: @response.params)
     else
-      #todo error sayfası yapıp hatayı görselleştirebiliriz kod ve mesajı ile
       raise StandardError, @response
     end
   end
 
   def acs_service
+    @response = params[:response]
+  end
+  def purchase_result
     @response = params[:response]
   end
 
@@ -99,7 +100,7 @@ class PaymentController < ApplicationController
         if @response.params['acs_url'].present?
           redirect_to acs_service_path(response: @response.params)
         else if !@response.nil?
-          render :purchase_result
+               redirect_to purchase_result_path(response: @response.params)
            end
         end
       else
