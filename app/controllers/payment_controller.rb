@@ -40,7 +40,6 @@ class PaymentController < ApplicationController
         if @response.params['acs_url'].present?
           redirect_to acs_service_path(response: @response.params)
         else
-          puts @response.params
           redirect_to purchase_result_path(response: @response.params)
         end
       else
