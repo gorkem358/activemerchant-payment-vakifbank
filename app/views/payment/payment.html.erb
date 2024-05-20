@@ -1,0 +1,23 @@
+<h2>Payment Information</h2>
+
+<%= form_with(url: purchase_path, method: :post) do %>
+  <label for="card_number">Card Number:</label><br>
+  <input type="text" id="card_number" name="card_number" pattern="[0-9]{16}" maxlength="16" required value="<%= @credit_card %>"><br><br>
+  <label for="expiry_date">Expire Date:</label><br>
+  <input type="text" id="expiry_date" name="expire_date" placeholder="MM/YY" required value="<%= @expire_month %>/<%= @expire_year %>"><br><br>
+  <label for="cvv">CVV:</label><br>
+  <input type="text" id="cvv" name="cvv" pattern="[0-9]{3}" maxlength="3" required value="<%= @cvv %>"><br><br>
+  <label for="amount">Amount:</label>
+  <input type="text" name="amount" id="amount" min="1.00" required value="<%= @amount %>"><br><br>
+  <label for="full_3d">3D Sale:</label>
+  <input type="checkbox" name="full_3d" id="full_3d">
+  <br>
+  <label for="currency">Currency:</label>
+  <select name="currency" id="currency">
+    <option value="949" <%= 'selected' if @currency == 'TRY' %>>TRY</option>
+    <option value="840" <%= 'selected' if @currency == 'USD' %>>USD</option>
+    <option value="978" <%= 'selected' if @currency == 'EUR' %>>EUR</option>
+    <option value="826" <%= 'selected' if @currency == 'GBP' %>>GBP</option>
+  </select><br><br>
+  <input type="submit" value="Pay Now">
+<% end %>

@@ -1,0 +1,7 @@
+<h2>Payment Information</h2>
+
+<%= form_with(url: cancel_path, method: :get) do %>
+  <label for="order_id">OrderID:</label><br>
+  <input type="text" id="order_id" name="order_id" required><br><br><br><br>
+  <input type="submit" value="Cancel Now">
+<% end %>
